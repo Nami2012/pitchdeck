@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Create Your Pitchdeck</title>
+</head>
+
+<body>
+
+    <div class="topnav">
+        <a class="active" href="{% url 'login'%}">Login</a>
+        <a href="{% url 'signup'%}">SignUp</a>
+
+        <div class="page-header">
+            <a href="/">Pitchdeck Creator</a>
+        </div>
+    </div>
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+
+            {% block content %}
+            {% endblock %}
+
+
+
+            </div>
+        </div>
+    </div>
+    <!--<div class="footer">
+        <p>Footer</p>
+    </div>-->
+
+</body>
+</html>
+
