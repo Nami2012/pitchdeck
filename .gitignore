@@ -1,4 +1,3 @@
-env/*
-migrations/*
-media/*
-
+/env/*
+/creator/migrations/*
+/creator/media/*
