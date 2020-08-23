@@ -7,7 +7,7 @@ from django.utils import timezone
 from django.urls import reverse
 
 class Profile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User,on_delete=models.CASCADE,unique=True,related_name='profile')
     image = models.ImageField(default="/profile_pics/main.jpg",upload_to='profile_pics')
 
     def __str__(self):
@@ -21,8 +21,9 @@ class Profile(models.Model):
             img.thumbnail(output_size)
             img.save(self.image.path)
 
+    
 
-class pitchDeck(models.Model):
+'''class pitchDeck(models.Model):
     user = models.ForeignKey(to=Profile, on_delete=models.CASCADE)
     pitchDeckId = models.AutoField(primary_key=True)
     startupName = models.CharField(max_length=64, blank=False)
@@ -135,8 +136,8 @@ class member(models.Model):
 class Team(models.Model):
     member1 = models.ForeignKey(to=member, on_delete=models.CASCADE)
     member2 = models.ForeignKey(to=member, on_delete=models.CASCADE)
-    member2 = models.ForeignKey(to=member, on_delete=models.CASCADE)
-    pitchDeckId =  models.ForeignKey(to=pitchDeck, on_delete=models.CASCADE)
+    member3 = models.ForeignKey(to=member, on_delete=models.CASCADE)
+    pitchDeckId =  models.ForeignKey(to=pitchDeck, on_delete=models.CASCADE)'''
    
 
 

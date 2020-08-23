@@ -3,7 +3,9 @@
 
 {% block content %}
 <div class="card">
- <img src = "{{user.profile.image.url}}" alt ="((user.profile.image.url))" width = "100%" >
+  {% if user.profile %}
+     <img class="circular--square" src="{{ user.profile.image.url }}" width="200" height="200">
+  {% endif %}
   <div class="container">
     <h1>Username : {{user.username}}</h1>
     <h2>Email : {{user.email}}</h2>
@@ -11,7 +13,7 @@
 </div>
 <br>
 
- <a class = "button" href = {% url 'profile-update' %}>Update</a>
+ <a class = "button" href = "{% url 'profile-update' %}" >Update</a>
 
 
 {% endblock content %}
