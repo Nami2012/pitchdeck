@@ -7,7 +7,7 @@ from django.utils import timezone
 from django.urls import reverse
 
 class Profile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE,unique=True,related_name='profile')
+    user = models.OneToOneField(User,on_delete=models.CASCADE,unique=True,related_name='profile',primary_key=True)
     image = models.ImageField(default="/profile_pics/main.jpg",upload_to='profile_pics')
 
     def __str__(self):
@@ -22,15 +22,15 @@ class Profile(models.Model):
             img.save(self.image.path)
 
     
-
-'''class pitchDeck(models.Model):
-    user = models.ForeignKey(to=Profile, on_delete=models.CASCADE)
+class pitchDeck(models.Model):
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     pitchDeckId = models.AutoField(primary_key=True)
     startupName = models.CharField(max_length=64, blank=False)
 
 
     def __str__(self):
         return f'(self.user.username) pitchDeck'
+
 
 
 class titleSlide(models.Model):
@@ -119,7 +119,7 @@ class competitiveAdvantage(models.Model):
     pitchDeckId =  models.ForeignKey(to=pitchDeck, on_delete=models.CASCADE)
     
 
-class member(models.Model):
+'''class member(models.Model):
     name =   models.CharField(max_length=64, blank=False)
     image = models.ImageField(default="/profile_pics/main.jpg",upload_to='profile_pics')
     credential1 = models.TextField(blank= False, null=True)

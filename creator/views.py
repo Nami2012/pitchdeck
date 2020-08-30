@@ -7,7 +7,8 @@ def home(request):
     return render(request,"base.html")
 
 
-from .forms import SignUpForm,UserUpdateForm,ProfileUpdateForm
+from .forms import *
+from .models import *
 
 def signup(request):
     if request.method == 'POST':
@@ -49,5 +50,83 @@ def profile_update(request):
 
 @login_required
 def profile(request):
+    print(pitchDeck.objects.all())
+
     return render(request,"profile.html")
+
+
+@login_required
+def input(request):
+    if request.method == 'POST':
+            form = pitchDeckForm(request.POST)
+            form.instance.user = request.user
+            
+            ##titleslide
+            tform = titleSlideForm(request.POST)
+            tform.instance.pitchDeckId = form.instance
+            
+            pform = problemTryingToSolveForm(request.POST)
+            pform.instance.pitchDeckId = form.instance
+            
+            vform = visionForm(request.POST)
+            vform.instance.pitchDeckId = form.instance
+            
+            USPform = uniqueValuePropositionForm(request.POST)
+            USPform.instance.pitchDeckId = form.instance
+            
+            mform = milestonesForm(request.POST)
+            mform.instance.pitchDeckId = form.instance
+            
+            tamform = totalAddressableMarketForm(request.POST)
+            tamform.instance.pitchDeckId = form.instance
+            
+            bmform = businessModalForm(request.POST)
+            bmform.instance.pitchDeckId = form.instance
+            
+            cform = CompetitionForm(request.POST)
+            cform.instance.pitchDeckId = form.instance
+            
+            caform = competitiveAdvantageForm(request.POST)
+            caform.instance.pitchDeckId = form.instance
+            
+            if form.is_valid() and tform.is_valid():
+                form.save()
+                tform.save()
+                return redirect('next/'+str(tform.instance.pitchDeckId.pitchDeckId)+'/')
+                ''' vform.save()
+                USPform.save()
+                mform.save()
+                tamform.save()
+                bmform.save()
+                cform.save()
+                caform.save()'''
+                
+    else:
+        form = pitchDeckForm()
+        tform = titleSlideForm()
+        '''pform = problemTryingToSolveForm()
+        vform = visionForm()
+        USPform = uniqueValuePropositionForm()
+        mform = milestonesForm()
+        tamform = totalAddressableMarketForm()
+        bmform = businessModalForm()
+        cform = CompetitionForm()
+        caform = competitiveAdvantageForm()'''
+            
+           
+    return render(request,'data.html',{'form':form,
+                                        'tform':tform
+                                                     })
+
+@login_required
+def next(request):
+    return HttpResponse("profile.html")
+
+'''             'vform':vform,
+                                                     'USPform':USPform,
+                                                     'mform':mform,
+                                                     'tamform':tamform,
+                                                     'bmform':bmform,
+                                                     'cform':cform,
+                                                     'caform':caform'''
 

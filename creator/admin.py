@@ -4,7 +4,7 @@ from django.contrib import admin
 from .models import *
 
 admin.site.register(Profile)
-'''admin.site.register(pitchDeck)
+admin.site.register(pitchDeck)
 admin.site.register(titleSlide)
 admin.site.register(problemTryingToSolve)
 admin.site.register(vision)
@@ -15,4 +15,3 @@ admin.site.register(totalAddressableMarket)
 admin.site.register(businessModal)
 admin.site.register(Competition)
 admin.site.register(competitiveAdvantage)
-'''
