@@ -92,41 +92,41 @@ def input(request):
             if form.is_valid() and tform.is_valid():
                 form.save()
                 tform.save()
-                return redirect('next/'+str(tform.instance.pitchDeckId.pitchDeckId)+'/')
-                ''' vform.save()
+                vform.save()
                 USPform.save()
                 mform.save()
                 tamform.save()
                 bmform.save()
                 cform.save()
-                caform.save()'''
+                caform.save()
+                return redirect('next/'+str(tform.instance.pitchDeckId.pitchDeckId)+'/')
                 
     else:
         form = pitchDeckForm()
         tform = titleSlideForm()
-        '''pform = problemTryingToSolveForm()
+        pform = problemTryingToSolveForm()
         vform = visionForm()
         USPform = uniqueValuePropositionForm()
         mform = milestonesForm()
         tamform = totalAddressableMarketForm()
         bmform = businessModalForm()
         cform = CompetitionForm()
-        caform = competitiveAdvantageForm()'''
+        caform = competitiveAdvantageForm()
             
            
     return render(request,'data.html',{'form':form,
-                                        'tform':tform
+                                        'tform':tform,
+                                        'vform':vform,
+                                        'USPform':USPform,
+                                        'mform':mform,
+                                        'tamform':tamform,
+                                        'bmform':bmform,
+                                        'cform':cform,
+                                        'caform':caform
                                                      })
 
 @login_required
 def next(request):
     return HttpResponse("profile.html")
 
-'''             'vform':vform,
-                                                     'USPform':USPform,
-                                                     'mform':mform,
-                                                     'tamform':tamform,
-                                                     'bmform':bmform,
-                                                     'cform':cform,
-                                                     'caform':caform'''
-
+             
